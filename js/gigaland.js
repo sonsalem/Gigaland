@@ -1,5 +1,27 @@
 'use strict'
 
+// Search => First To Make page Faster
+
+
+let search = document.querySelector('.landSearch .search input')
+let serachContent = document.querySelector('.SearchItems');
+let serachItmes = document.querySelectorAll('.SearchItems .se');
+let serachTitles = document.querySelectorAll('.SearchItems .se .titID');
+
+if (serachContent != undefined) {
+  let loc = location.search.substr(11).toLocaleLowerCase().split("+").join(" ");
+  if (!loc == '') {
+    search.value = loc;
+  }
+  serachTitles.forEach((ele, j) => {
+    if (ele.textContent.toLocaleLowerCase().includes(loc)) {
+      ele.parentElement.parentElement.parentElement.classList.remove('d-none')
+    } else {
+      ele.parentElement.parentElement.parentElement.remove()
+    }
+  })
+}
+
 // Loading
 
 let loading = document.querySelector('.loading');
@@ -231,26 +253,6 @@ if (pagination != undefined) {
   } else {
     navLink[0].click()
   }
-}
-
-
-// Search
-let search = document.querySelector('.landSearch .search input')
-let serachContent = document.querySelector('.SearchItems');
-let serachItmes = document.querySelectorAll('.SearchItems .se');
-let serachTitles = document.querySelectorAll('.SearchItems .se .titID');
-
-if (serachContent != undefined) {
-  let loc = location.search.substr(11).toLocaleLowerCase().split("+").join(" ");
-  if (!loc == '') {
-    serachItmes.forEach(el => el.classList.add('d-none'));
-    search.value = loc;
-  }
-  serachTitles.forEach((ele, j) => {
-    if (ele.textContent.toLocaleLowerCase().includes(loc)) {
-      ele.parentElement.parentElement.parentElement.classList.remove('d-none')
-    }
-  })
 }
 
 // Shuffle
